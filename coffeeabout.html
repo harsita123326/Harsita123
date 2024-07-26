@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caffeine</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f2e3c6 0%, #d4b96f 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #1c0303, #3b271b);
+            padding: 40px 20px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+            animation: slideIn 1s ease-out;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: rgb(23, 1, 1);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            pointer-events: none;
+            animation: pulse 2s infinite;
+        }
+
+        .newsletter h2, .newsletter p {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.75rem;
+            margin: 0 0 10px;
+        }
+
+        .newsletter input[type="email"] {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 30px;
+            outline: none;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .newsletter button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            background: #1c0303;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .newsletter button:hover {
+            background: #333;
+            transform: scale(1.05);
+        }
+
+        /* Content Section */
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            background: #3b271b;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .content > div {
+            flex: 1;
+            margin: 0 15px;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand h2, .contact h3, .contact p, .media img {
+            position: relative;
+            z-index: 2;
+            font-weight: bold;
+        }
+
+        .social {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social a {
+            color: #d2b48c;
+            margin: 0 10px;
+            font-size: 24px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social a:hover {
+            color: #fff;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, #3b271b, #1c0303);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about h2 {
+            text-align: center;
+            color: #d2b48c;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .about p {
+            text-align: justify;
+            line-height: 1.6;
+            font-size: 0.9rem;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* Vision and Mission Section */
+        .vision-mission {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 40px 0;
+        }
+
+        .vision, .mission {
+            flex: 1;
+            margin: 0 10px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2e2c2b, #1c0303);
+            border-radius: 15px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .vision h2, .mission h2, .vision p, .mission p {
+            position: relative;
+            z-index: 2;
+        }
+
+        .vision h2, .mission h2 {
+            color: #d2b48c;
+            margin-bottom: 10px;
+            font-size: 1.75rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: #3b271b;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            color: #d4b96f;
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+        }
+
+        .testimonials blockquote {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 10px 20px;
+            border-left: 5px solid #d4b96f;
+        }
+
+        /* Featured Products Section */
+        .featured-products {
+            background: #3b271b;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .featured-products h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #d4b96f;
+            font-size: 1.75rem;
+        }
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .product {
+            flex: 1;
+            max-width: 250px;
+            margin: 10px;
+            padding: 20px;
+            background: #3b271b;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .product h3 {
+            margin: 0;
+            color: #d4b96f;
+            font-size: 1.25rem;
+        }
+
+        .product p {
+            margin: 5px 0;
+        }
+
+        /* Footer Section */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1c0303;
+            border-radius: 15px;
+            color: #fff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            margin-top: 30px;
+            animation: slideIn 1s ease-out;
+        }
+
+        /* Scroll-to-Top Button */
+        .scroll-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .scroll-button button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            background: #1c0303;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .scroll-button button:hover {
+            background: #333;
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container, .newsletter, .content, .about, .vision, .mission, footer, .scroll-button {
+            animation: slideIn 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>About Us</h1>
+        </div>
+
+        <div class="newsletter">
+            <h2>Stay Up To Date On All News And Offers</h2>
+            <p>Be the first to know about new collections, special events, and what's going on at Caffeine</p>
+            <input type="email" id="email" placeholder="Enter Your Email Address">
+            <button onclick="subscribe()">Subscribe</button>
+        </div>
+
+        <div class="content">
+            <div class="brand">
+                <h2>Caffeine</h2>
+                <p>Enjoy better quality coffee with Caffeine.</p>
+            </div>
+
+            <div class="contact">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:Caffeine@Gmail.Com">Caffeine@Gmail.Com</a></p>
+                <p>Call Us: (321) 562 - 57420</p>
+                <p>Text Us: (321) 562 - 57420</p>
+                <p>Address: 39 Brooklyn Street, Covington, VA 244426</p>
+            </div>
+
+            <div class="media">
+                <img src="./final.jpeg" alt="Coffee" style="width: 100%; max-width: 500px; border-radius: 15px;">
+                <div class="social">
+                    <a href="https://www.instagram.com/" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" class="social-icon">
+                    </a>
+                    <a href="https://www.facebook.com/" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" class="social-icon">
+                    </a>
+                    <a href="https://www.twitter.com/" target="_blank">
+                        <img src="./twitter.jpg" alt="Twitter Logo" class="social-icon">
+                    </a>
+                    <a href="https://www.pinterest.com/" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" alt="Pinterest Logo" class="social-icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="about">
+            <h2>About Us</h2>
+            <p>At Caffeine, we are passionate about providing the highest quality coffee to our customers. Our journey started with a simple goal: to create a unique coffee experience that stands out. We source our beans from the best farms around the world, ensuring that every cup of coffee is rich in flavor and aroma. Our dedicated team works tirelessly to roast, blend, and brew the perfect cup of coffee just for you.</p>
+            <p>We believe that coffee is not just a beverage, but an experience that brings people together. Whether you are enjoying a quiet morning at home or catching up with friends at our café, we strive to make every moment special. Thank you for being a part of our coffee journey. We look forward to serving you the best coffee, every day.</p>
+        </div>
+
+        <div class="vision-mission">
+            <div class="vision">
+                <h2>Our Vision</h2>
+                <p>To be the leading provider of premium coffee, creating memorable experiences for our customers through exceptional quality and service.</p>
+            </div>
+            <div class="mission">
+                <h2>Our Mission</h2>
+                <p>To deliver the finest coffee, sourced from the best farms globally, and brewed to perfection, ensuring each cup is a delightful journey for the senses.</p>
+            </div>
+        </div>
+
+        <div class="testimonials">
+            <h2>What Our Customers Say</h2>
+            <blockquote>
+                "Caffeine has transformed my coffee experience. Their beans are of exceptional quality, and the flavor is unmatched!"
+                <footer>- Alex M.</footer>
+            </blockquote>
+            <blockquote>
+                "The best coffee I've ever had! Caffeine's commitment to quality is evident in every cup."
+                <footer>- Jamie T.</footer>
+            </blockquote>
+        </div>
+
+        <div class="featured-products">
+            <h2>Featured Products</h2>
+            <div class="product-list">
+                <div class="product">
+                    <img src="./about1.webp" alt="Product 1">
+                    <h3>Premium Roast</h3>
+                    <p>A rich blend of the finest beans, perfect for a bold cup of coffee.</p>
+                </div>
+                <div class="product">
+                    <img src="./about2.jpeg" alt="Product 2">
+                    <h3>Classic Blend</h3>
+                    <p>A smooth and balanced coffee, ideal for everyday enjoyment.</p>
+                </div>
+                <div class="product">
+                    <img src="./about3.jpeg" alt="Product 3">
+                    <h3>Decaf Delight</h3>
+                    <p>A flavorful decaf option that doesn't compromise on taste.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Caffeine. All rights reserved.</p>
+        </footer>
+
+        <div class="scroll-button">
+            <button onclick="scrollToTop()">Back to Top</button>
+        </div>
+    </div>
+
+    <div id="assistant" style="position: fixed; bottom: 20px; right: 20px; background: #1c0303; color: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);">
+        <h3>Need Help?</h3>
+        <p>Type your question below and I'll do my best to assist you!</p>
+        <input type="text" id="userQuery" placeholder="Ask me something..." style="width: 100%; padding: 10px; border-radius: 5px; border: none; margin-bottom: 10px;">
+        <button onclick="assist()" style="width: 100%; padding: 10px; border: none; border-radius: 5px; background: #d2b48c; color: #fff; cursor: pointer; transition: background-color 0.3s;">Send</button>
+    </div>
+
+    <script>
+        function subscribe() {
+            const emailInput = document.getElementById('email');
+            const email = emailInput.value;
+            if (validateEmail(email)) {
+                alert('Thank you for subscribing!');
+                emailInput.value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function assist() {
+            const userQuery = document.getElementById('userQuery').value;
+            if (userQuery.trim() === '') {
+                alert('Please ask a question.');
+            } else {
+                alert(`You asked: "${userQuery}". Unfortunately, this is just a sample assistant and cannot answer questions at this time.`);
+                document.getElementById('userQuery').value = '';
+            }
+        }
+    </script>
+</body>
+</html> 
+
+
+
+

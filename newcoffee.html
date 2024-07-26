@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAFFEINE</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color:  rgb(23, 1, 1);
+            color: #fff;
+        }
+        .sample {
+            text-align: center;
+            height: 100px;
+            width: 100%;
+            font-size: 25px;
+            background-color: rgb(28, 3, 3);
+            position: fixed;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        nav p {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #f90;
+        }
+        .sample2 {
+            background-image: url('./coffee-background-pulyf4svn5bnfs7b.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px 50px;
+            text-align: left;
+        }
+        .heading {
+            color: white;
+            font-family: 'Cursive', sans-serif;
+            font-size: 48px;
+            margin: 20px 0;
+            animation: typing 4s steps(40, end), fadeInDown 1s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: .15em solid transparent;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        .btn {
+            color: white;
+            background-color: rgb(23, 1, 1);
+            height: 50px;
+            width: 200px;
+            margin: 20px 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #f90;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgb(23, 1, 1);
+            color: white;
+            border: none;
+            height: 40px;
+            width: 150px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .scroll-top:hover {
+            background-color: #f90;
+            transform: scale(1.05);
+        }
+        .scroll-top.animated {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        .footer {
+            background-color: rgb(28, 3, 3);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .social-icons a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 24px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: #f90;
+        }
+        .testimonials {
+            margin: 40px 20px;
+            text-align: center;
+        }
+        .testimonial {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .dynamic-quote {
+            text-align: center;
+            margin: 40px 20px;
+            font-size: 24px;
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 40px 20px;
+        }
+        .gallery img {
+            margin: 10px;
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px  rgb(23, 1, 1);
+        }
+        .fun-facts {
+            margin: 40px 20px;
+            text-align: center;
+        }
+        .fun-fact {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-style: italic;
+        }
+        .blog {
+            margin: 40px 20px;
+            text-align: center;
+        }
+        .blog h2 {
+            margin-bottom: 20px;
+        }
+        .blog-article {
+            margin-bottom: 20px;
+        }
+        .blog-article h3 {
+            margin-bottom: 10px;
+        }
+        .blog-article p {
+            font-size: 16px;
+        }
+        .newsletter {
+            text-align: center;
+            margin: 40px 20px;
+        }
+        .newsletter h2 {
+            margin-bottom: 20px;
+        }
+        .newsletter input[type="email"] {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .newsletter button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f90;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .newsletter button:hover {
+            background-color: #ff6f00;
+            transform: scale(1.05);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="sample">
+        <p><b><i>CAFFEINE</i></b></p>
+        <nav>
+            <a href="coffeehome.html">Home</a>
+            <a href="coffeemenu.html">Menu</a>
+            <a href="coffeeoffers.html">Offers</a>
+            <a href="coffeeabout.html">About Us</a>
+        </nav>
+    </div>
+    <div class="sample2">
+        <h1 class="heading"><i><b>DISCOVER THE<br>ART OF <br>PERFECT COFFEE!!</b></i></h1>
+        <button class="btn" onclick="navigateToMenu()">ORDER NOW →</button>
+        <button class="btn" onclick="navigateToHome()">EXPLORE MORE!</button>
+    </div>
+    <button class="scroll-top animated" onclick="scrollToTop()">Scroll to Top</button>
+    <div class="dynamic-quote" id="quote"></div>
+    <div class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial">
+            <p>"Best coffee I've ever had!" - John Doe</p>
+        </div>
+        <div class="testimonial">
+            <p>"A must-visit for all coffee lovers." - Jane Smith</p>
+        </div>
+        <div class="testimonial">
+            <p>"Exceptional quality and great atmosphere." - Sarah Johnson</p>
+        </div>
+    </div>
+    <div class="gallery">
+        <img src="./gallery1.webp" alt="Coffee 1">
+        <img src="./americano.jpg" alt="Coffee 2">
+        <img src="./gallery3.jpg" alt="Coffee 3">
+        <img src="./gallery4.jpeg" alt="Coffee 4">
+    </div>
+    <div class="fun-facts">
+        <h2>Fun Facts About Coffee</h2>
+        <p class="fun-fact">Coffee is the second most traded commodity on Earth.</p>
+        <p class="fun-fact">The first webcam was created to check the status of a coffee pot.</p>
+        <p class="fun-fact">Coffee beans are technically seeds, and they come from a fruit called a coffee cherry.</p>
+    </div>
+    <div class="blog">
+        <h2>Latest Articles</h2>
+        <div class="blog-article">
+            <h3>The History of Coffee</h3>
+            <p>Discover the fascinating journey of coffee from its discovery to its global presence today.</p>
+        </div>
+        <div class="blog-article">
+            <h3>Perfect Brewing Techniques</h3>
+            <p>Learn how to brew the perfect cup of coffee with these simple techniques and tips.</p>
+        </div>
+        <div class="blog-article">
+            <h3>Health Benefits of Coffee</h3>
+            <p>Find out how coffee can benefit your health and why it’s more than just a morning ritual.</p>
+        </div>
+    </div>
+    <div class="newsletter">
+        <h2>Subscribe to Our Newsletter</h2>
+        <p>Stay updated with our latest news and offers.</p>
+        <form>
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+    <div class="footer">
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function navigateToMenu() {
+            window.location.href = 'coffeemenu.html';
+        }
+
+        function navigateToHome() {
+            window.location.href = 'coffeehome.html';
+        }
+
+        function getRandomQuote() {
+            const quotes = [
+                "Life is too short for bad coffee.",
+                "Coffee is a hug in a mug.",
+                "But first, coffee.",
+                "Coffee: because adulting is hard.",
+                "Coffee is always a good idea."
+            ];
+            return quotes[Math.floor(Math.random() * quotes.length)];
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('quote').textContent = getRandomQuote();
+        });
+    </script>
+</body>
+</html>

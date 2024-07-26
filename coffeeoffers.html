@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop Discount</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #2c0f0e 0%, #1a0605 100%);
+            color: #f5e3c8;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(44, 15, 14, 0.9);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #be6e3d;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Container Styles */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: auto;
+            gap: 50px;
+        }
+
+        .content {
+            text-align: center;
+            animation: fadeIn 1.5s;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #be6e3d;
+        }
+
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            color: #f5e3c8;
+        }
+
+        .signup-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .signup-form input {
+            padding: 15px;
+            font-size: 1.2em;
+            border: 2px solid #be6e3d;
+            border-radius: 30px 0 0 30px;
+            margin-right: -2px;
+            width: 300px;
+            outline: none;
+        }
+
+        .signup-form button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #2c0f0e;
+            background-color: #be6e3d;
+            border: 2px solid #be6e3d;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            outline: none;
+        }
+
+        .signup-form button:hover {
+            background-color: #be6e3d;
+            transform: scale(1.05);
+        }
+
+        /* Image Container Styles */
+        .combo-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .combo-item {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 250px;
+        }
+
+        .combo-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin: 10px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .combo-item img:hover {
+            transform: scale(1.1);
+        }
+
+        .combo-item h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+            color: #2c0f0e;
+        }
+
+        .combo-item p {
+            font-size: 1.2em;
+            color:rgb(23,1,1);
+            margin: 10px 0;
+        }
+
+        .order-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #be6e3d;
+            color: #2c0f0e;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            outline: none;
+        }
+
+        .order-button:hover {
+            background-color: #a25a2d;
+            transform: scale(1.05);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: rgba(44, 15, 14, 0.9);
+            text-align: center;
+            padding: 20px 0;
+            color: #f5e3c8;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #be6e3d;
+            color: white;
+            border: none;
+            height: 40px;
+            width: 150px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .scroll-top:hover {
+            background-color: #a25a2d;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">OFFERS</div>
+    </nav>
+    <div class="container">
+        <div class="content">
+            <h1>Get 15% Off Your First Purchase</h1>
+            <p>Sign up below and get 15% off and many other attractive product offers.</p>
+            <div class="signup-form">
+                <input type="email" id="emailInput" placeholder="Enter your email" required>
+                <button type="button" onclick="subscribe()">Subscribe</button>
+            </div>
+        </div>
+
+        <!-- Combo Offers Section -->
+        <div class="combo-container">
+            <!-- Combo Offer 1 -->
+            <div class="combo-item">
+                <img src="./cappucino.jpg!w700wp" alt="Cappuccino">
+                <img src="./americano.jpg" alt="Americano">
+                <img src="./espresso.jpg" alt="Espresso">
+                <img src="./latte.webp" alt="Latte">
+                <h2>Combo Offer 1</h2>
+                <p>Enjoy a mix of Cappuccino, Americano, Espresso, and Latte at a special price!</p>
+                <button class="order-button" onclick="orderCombo('Combo Offer 1')">Order Now</button>
+            </div>
+
+            <!-- Combo Offer 2 -->
+            <div class="combo-item">
+                <img src="./mocha.png" alt="Mocha">
+                <img src="./macchiato.jpg" alt="Macchiato">
+                <img src="./hotchocolate.jpg" alt="Hot Chocolate">
+                <img src="./icedcoffee.jpeg" alt="Iced Coffee">
+                <h2>Combo Offer 2</h2>
+                <p>Try our Mocha, Macchiato, Hot Chocolate, and Iced Coffee combo!</p>
+                <button class="order-button" onclick="orderCombo('Combo Offer 2')">Order Now</button>
+            </div>
+
+            <!-- Combo Offer 3 -->
+            <div class="combo-item">
+                <img src="./affogato.webp" alt="Affogato">
+                <img src="./flatwhite.avif" alt="Flat White">
+                <img src="./latte.webp" alt="Latte">
+                <img src="./mocha.png" alt="Mocha">
+                <h2>Combo Offer 3</h2>
+                <p>Enjoy Affogato, Flat White, Latte, and Mocha in this special combo offer!</p>
+                <button class="order-button" onclick="orderCombo('Combo Offer 3')">Order Now</button>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>&copy; <span id="currentYear"></span> The Coffee Shop. All rights reserved.</p>
+    </footer>
+    <button class="scroll-top" onclick="scrollToTop()">Scroll to Top</button>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Form subscription handler
+        function subscribe() {
+            const email = document.getElementById('emailInput').value;
+            if (validateEmail(email)) {
+                alert('Thank you for subscribing!');
+                // You can add code here to actually handle the subscription
+                document.getElementById('emailInput').value = ''; // Clear input field
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        }
+
+        // Email validation function
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        // Smooth scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Change navbar background color on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(44, 15, 14, 1)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(44, 15, 14, 0.9)';
+            }
+        });
+
+        // Order button handler
+        function orderCombo(comboName) {
+            alert(`You have selected ${comboName}. Proceed to checkout!`);
+            // You can add code here to handle the order process
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+   

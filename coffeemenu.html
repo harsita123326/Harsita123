@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Page</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0e5d8;
+            margin: 0;
+            padding: 0;
+        }
+        .homehead {
+            text-align: center;
+            font-family: 'Pacifico', cursive;
+            height: 100px;
+            width: 100%;
+            font-size: 35px;
+            background-color: rgb(28, 3, 3);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .menu-container {
+            padding: 140px 20px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .menu-item {
+            background-color: #ffffff;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+            width: 30%;
+            text-align: center;
+            margin: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .menu-image-container {
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .menu-image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .menu-text-container {
+            margin: 10px 0;
+            font-size: 20px;
+            font-weight: bold;
+            color: #3b2c35;
+        }
+        .menu-price {
+            font-size: 18px;
+            color: #3b2c35;
+            margin: 10px 0;
+        }
+        .order-button, .favourites-button {
+            display: inline-block;
+            padding: 10px 25px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #270101;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .order-button:hover, .favourites-button:hover {
+            background-color: #270101;
+            transform: scale(1.05);
+        }
+        .quantity-input {
+            width: 50px;
+            padding: 5px;
+            margin-top: 10px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+        }
+        .sort-button, .show-more-button, .view-favourites-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #270101;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .sort-button:hover, .show-more-button:hover, .view-favourites-button:hover {
+            background-color: #3b2c35;
+            transform: scale(1.05);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="homehead">
+        OUR MENU
+    </div>
+    <div class="menu-container" id="menuContainer">
+        <!-- Visible Items -->
+        <div class="menu-item" data-price="3.50">
+            <div class="menu-image-container">
+                <img src="./cappucino.jpg!w700wp" alt="Cappuccino">
+            </div>
+            <div class="menu-text-container">
+                Cappuccino
+            </div>
+            <div class="menu-price">
+                $3.50
+            </div>
+            <input type="number" class="quantity-input" min="1" value="1">
+            <button class="order-button" onclick="orderItem('Cappuccino', this)">Order Now</button>
+            <button class="favourites-button" onclick="addToFavourites('Cappuccino', this)">Add to Favourites</button>
+        </div>
+        <div class="menu-item" data-price="3.00">
+            <div class="menu-image-container">
+                <img src="./americano.jpg" alt="Americano">
+            </div>
+            <div class="menu-text-container">
+                Americano
+            </div>
+            <div class="menu-price">
+                $3.00
+            </div>
+            <input type="number" class="quantity-input" min="1" value="1">
+            <button class="order-button" onclick="orderItem('Americano', this)">Order Now</button>
+            <button class="favourites-button" onclick="addToFavourites('Americano', this)">Add to Favourites</button>
+        </div>
+        <div class="menu-item" data-price="2.50">
+            <div class="menu-image-container">
+                <img src="./espresso.jpg" alt="Espresso">
+            </div>
+            <div class="menu-text-container">
+                Espresso
+            </div>
+            <div class="menu-price">
+                $2.50
+            </div>
+            <input type="number" class="quantity-input" min="1" value="1">
+            <button class="order-button" onclick="orderItem('Espresso', this)">Order Now</button>
+            <button class="favourites-button" onclick="addToFavourites('Espresso', this)">Add to Favourites</button>
+        </div>
+        <div class="menu-item" data-price="3.00">
+            <div class="menu-image-container">
+                <img src="./affogato.webp" alt="Affogato">
+            </div>
+            <div class="menu-text-container">
+                Affogato
+            </div>
+            <div class="menu-price">
+                $4.00
+            </div>
+            <input type="number" class="quantity-input" min="1" value="1">
+            <button class="order-button" onclick="orderItem('Affogato', this)">Order Now</button>
+            <button class="favourites-button" onclick="addToFavourites('Affogato', this)">Add to Favourites</button>
+        </div>
+        <div class="menu-item" data-price="3.00">
+            <div class="menu-image-container">
+                <img src="./icedcoffee.jpeg" alt="Iced Coffee">
+            </div>
+            <div class="menu-text-container">
+                Iced Coffee
+            </div>
+            <div class="menu-price">
+                $3.50
+            </div>
+            <input type="number" class="quantity-input" min="1" value="1">
+            <button class="order-button" onclick="orderItem('Iced Coffee', this)">Order Now</button>
+            <button class="favourites-button" onclick="addToFavourites('Iced Coffee', this)">Add to Favourites</button>
+        </div>
+        <div class="menu-item" data-price="3.00">
+            <div class="menu-image-container">
+                <img src="./flatwhite.avif" alt="Flat White">
+            </div>
+            <div class="menu-text-container">
+                Flat White
+            </div>
+            <div class="menu-price">
+                $5.00
+            </div>
+            <input type="number" class="quantity-input" min="1" value="1">
+            <button class="order-button" onclick="orderItem('Flat White', this)">Order Now</button>
+            <button class="favourites-button" onclick="addToFavourites('Flat White', this)">Add to Favourites</button>
+        </div>
+       
+
+        <!-- Hidden Items -->
+        <div class="menu-item" data-price="4.00" style="display: none;">
+            <div class="menu-image-container">
+                <img src="./latte.webp" alt="Latte">
+            </div>
+            <div class="menu-text-container">
+                Latte
+            </div>
+            <div class="menu-price">
+                $4.00
+            </div>
+            <input type="number" class="quantity-input" min="1" value="1">
+            <button class="order-button" onclick="orderItem('Latte', this)">Order Now</button>
+            <button class="favourites-button" onclick="addToFavourites('Latte', this)">Add to Favourites</button>
+        </div>
+        <div class="menu-item" data-price="3.75" style="display: none;">
+            <div class="menu-image-container">
+                <img src="./mocha.png" alt="Mocha">
+            </div>
+            <div class="menu-text-container">
+                Mocha
+            </div>
+            <div class="menu-price">
+                $3.75
+            </div>
+            <input type="number" class="quantity-input" min="1" value="1">
+            <button class="order-button" onclick="orderItem('Mocha', this)">Order Now</button>
+            <button class="favourites-button" onclick="addToFavourites('Mocha', this)">Add to Favourites</button>
+        </div>
+        <div class="menu-item" data-price="2.75" style="display: none;">
+            <div class="menu-image-container">
+                <img src="./macchiato.jpg" alt="Macchiato">
+            </div>
+            <div class="menu-text-container">
+                Macchiato
+            </div>
+            <div class="menu-price">
+                $2.75
+            </div>
+            <input type="number" class="quantity-input" min="1" value="1">
+            <button class="order-button" onclick="orderItem('Macchiato', this)">Order Now</button>
+            <button class="favourites-button" onclick="addToFavourites('Macchiato', this)">Add to Favourites</button>
+        </div>
+        <div class="menu-item" data-price="4.50" style="display: none;">
+            <div class="menu-image-container">
+                <img src="./hotchocolate.jpg" alt="Hot Chocolate">
+            </div>
+            <div class="menu-text-container">
+                Hot Chocolate
+            </div>
+            <div class="menu-price">
+                $4.50
+            </div>
+            <input type="number" class="quantity-input" min="1" value="1">
+            <button class="order-button" onclick="orderItem('Hot Chocolate', this)">Order Now</button>
+            <button class="favourites-button" onclick="addToFavourites('Hot Chocolate', this)">Add to Favourites</button>
+        </div>
+    </div>
+    <div style="text-align: center; margin-bottom: 20px;">
+        <button class="show-more-button" onclick="showMoreItems()">Show More</button>
+        <button class="sort-button" onclick="sortMenu()">Sort by Price</button>
+        <button class="view-favourites-button" onclick="viewFavourites()">View Favourites</button>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modalText"></p>
+        </div>
+    </div>
+
+    <script>
+        const favourites = [];
+
+        function orderItem(itemName, button) {
+            const quantity = button.previousElementSibling.value;
+            const price = parseFloat(button.parentElement.getAttribute('data-price'));
+            const total = (quantity * price).toFixed(2);
+            showModal(`You have ordered ${quantity} ${itemName}(s). Total: $${total}`);
+        }
+
+        function addToFavourites(itemName, button) {
+            favourites.push(itemName);
+            showModal(`${itemName} has been added to your favourites.`);
+            button.disabled = true;
+        }
+
+        function viewFavourites() {
+            if (favourites.length === 0) {
+                showModal("You have no favourite items.");
+            } else {
+                showModal(`Your favourite items are: ${favourites.join(', ')}`);
+            }
+        }
+
+        function showModal(message) {
+            document.getElementById('modalText').innerText = message;
+            document.getElementById('myModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        function showMoreItems() {
+            const hiddenItems = document.querySelectorAll('.menu-item[style*="display: none"]');
+            hiddenItems.forEach(item => item.style.display = 'block');
+        }
+
+        function sortMenu() {
+            const menuContainer = document.getElementById('menuContainer');
+            const menuItems = Array.from(menuContainer.querySelectorAll('.menu-item'));
+            menuItems.sort((a, b) => parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price')));
+            menuItems.forEach(item => menuContainer.appendChild(item));
+        }
+    </script>
+</body>
+</html>
+
+
+
+
